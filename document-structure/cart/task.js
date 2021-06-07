@@ -11,16 +11,14 @@ function addingToCart() {
         let target = e.target;
         let productId = target.closest('.product').dataset.id - 1;
 
-        if (target.classList.contains('product__quantity-control_dec')) {
+        if (target.classList.contains('product__quantity-control_dec') && productQuantityValue[productId].innerText > 1) {
             productQuantityValue[productId].innerText -= 1;
         }
         if (target.classList.contains('product__quantity-control_inc')) {
             productQuantityValue[productId].innerText =
                 +productQuantityValue[productId].innerText + 1;
         }
-        if (productQuantityValue[productId].innerText < 1) {
-            productQuantityValue[productId].innerText = 1;
-        }
+
         if (target.classList.contains('product__add')) {
             let productToCart = `
                 <div class="cart__product" data-id="${productId + 1}">
@@ -71,3 +69,4 @@ function addingToCart() {
 }
 
 addingToCart();
+

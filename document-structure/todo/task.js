@@ -2,11 +2,13 @@
 
 const tasksAdd = document.getElementById('tasks__add'),
       input = document.getElementById('task__input'),
-      taskList = document.getElementById('tasks__list');
+      taskList = document.getElementById('tasks__list'),
+      form =document.getElementById('tasks__form');
 
 
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && input.value !== '') {
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (input.value) {
         taskList.innerHTML += `
         <div class="task">
             <div class="task__title">
@@ -15,13 +17,10 @@ document.addEventListener('keydown', (e) => {
             <a href="#" class="task__remove">&times;</a>
         </div>
         `
-        e.preventDefault();
-        
         input.value = '';
     }
+
 });
-
-
 
 taskList.addEventListener('click', e => {
     e.preventDefault();
